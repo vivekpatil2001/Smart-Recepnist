@@ -8,9 +8,9 @@ import Signup from './views/Signup/Signup';
 import Login from './views/Login/Login';
 import CriminalForm from './views/CriminalForm/CriminalForm';
 import FaceDetection from './views/FaceDetection/FaceDetection';
-import MissingPerson from './views/MissingPerson/MissingPerson';
+import PatientForm from './views/PatientForm/PatientForm';
 import CriminalData from './views/CriminalData/CriminalData';
-import MissingPersonData from './views/MissingPersonData/MissingPersonData';
+import PatientData from './views/PatientData/PatientData';
 import Button from './views/Button/Button';
 
 
@@ -41,12 +41,12 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/missingPerson',
-    element: <MissingPerson/>
+    path: '/patientform',
+    element: <PatientForm/>
   },
   {
-    path: '/missingPersonData',
-    element: <MissingPersonData/>
+    path: '/patientData',
+    element: <PatientData/>
   },
   {
     path: '/button',

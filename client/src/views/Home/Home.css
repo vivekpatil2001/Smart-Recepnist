@@ -1,7 +1,43 @@
 .heading-text{
     margin-right: 500px;
+    margin-bottom: 0 !important;
 }
 .boxes{
-   margin-top: 10px !important;
+   margin-top: 30px !important;
    padding-top: 0;
+}
+.second-box{
+    margin-left: 155px;
+    margin-top: 20px;
+   
+}
+.img{
+     margin-left: 0px;
+     display: flex;
+     margin-top: 40px !important;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        display: flex;
+        justify-content: center;    
+    }
+    .box{
+        width: 400px;
+        margin-right: 150px;
+        margin-bottom: 40px;    
+    }
+    .img{
+        width: 500px;
+    }
+    .heading-text{
+    margin-right: 100px;
+    margin-bottom: 0 !important;
+}
+    
 }
