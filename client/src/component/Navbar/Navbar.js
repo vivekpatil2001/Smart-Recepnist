@@ -50,6 +50,7 @@ function Navbar() {
             </button>
           ) : (
             <span>
+              
               <Link to="/signup" className="navbar-link">
                 {" "}
                 Signup{" "}
@@ -57,6 +58,7 @@ function Navbar() {
               <Link to="/login" className="navbar-link">
                 login
               </Link>{" "}
+              
             </span>
           )}
 

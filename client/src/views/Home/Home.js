@@ -11,9 +11,17 @@ import { MdSettingsVoice } from "react-icons/md";
 import { BsRocketTakeoff } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Footer from "../../component/Footer/Footer";
+
+import CriminalForm from "./../CriminalForm/CriminalForm"
+import CriminalData from "../CriminalData/CriminalData";
+import FaceDetection from "../FaceDetection/FaceDetection";
+
+
+
 function Home() {
   return (
     <div>
+       {/* <div><FaceDetection /></div> */}
       <div>
         <Navbar />
       </div>
@@ -82,7 +90,7 @@ function Home() {
                 <FaFaceGrinWide className="text-pink-500 border-2 p-[4px]  shadow-md border-pink-500 text-[45px] rounded block mx-auto absolute top-4 left-9" />
                 <p className="absolute bottom-4 text-[22px] font-bold pl-5 left-20">
                   {" "}
-                  Face Recongnition
+                 <Link to="/facedetect">Face Recongnition</Link> 
                 </p>
               </div>
             </div>
@@ -113,7 +121,22 @@ function Home() {
         <div>
           <Footer />
         </div>
-      </div>
+
+
+        </div>
+        <div>
+          <CriminalForm />
+        </div>
+        <div>
+          <CriminalData />
+        </div>
+       
+
+
+
+
+
+      
     </div>
   );
 }

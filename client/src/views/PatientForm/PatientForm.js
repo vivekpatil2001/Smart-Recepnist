@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./PatientForm.css";
 import "../CriminalForm/CriminalForm.css";
 import axios from "axios";
@@ -7,7 +7,8 @@ import Navbar from "../../component/Navbar/Navbar";
 import { MdDelete } from "react-icons/md";
 import showToast from "crunchy-toast";
 import { Link } from "react-router-dom";
- 
+import Webcam from 'react-webcam'; 
+
 const PatientForm = () => {
   const [face, setFace] = useState("");
   const [Name, setName] = useState("");
@@ -20,6 +21,15 @@ const PatientForm = () => {
   const [address, setAddress] = useState("");
   const [state, setState] = useState("");
   const [data, setData] = useState([]);
+
+
+  const webcamRef = useRef(null); // Reference to the webcam component
+
+  const capture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImage(imageSrc);
+  };  
+
 
   const PatientData = async () => {
     const response = await axios.post("/missingPerson", {
@@ -208,7 +218,7 @@ const PatientForm = () => {
                 />
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label className="font-semibold text-lg">Image URL:</label>
                 <input
                   type="text"
@@ -219,7 +229,18 @@ const PatientForm = () => {
                     setImage(e.target.value);
                   }}
                 />
-              </div>
+              </div> */}
+              <div className="form-group">
+               <label className='font-semibold text-lg'>Capture Image:</label>
+              <Webcam
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                className='webcam-preview'
+              />
+               <button onClick={capture} className="bg-pink-600 hover:bg-pink-800 text-white font-bold mt-2 py-2 px-5 block rounded-lg" type='button'>Capture</button>
+            </div>
+
             </div>
           </div>
           <button

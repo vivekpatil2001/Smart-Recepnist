@@ -9,7 +9,9 @@
     border: 2px solid black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
+  .webcam-preview{
+    height: 200px;
+  }
   .form-group {
     margin-top: 20px;
   }

@@ -1,59 +1,59 @@
 import { Schema, model } from "mongoose";
 
-const CriminalRecordSchema = new Schema({
- criminalID: {
-        type: Number,
+const FaceRecognitionDataSchema = new Schema({
+    criminalID: {
+        type: String,
         required: true,
         unique: true
     },
+
      address: {
-        type: String,
-        required: true
+        type: String
     },
 
     Name: {
-        type: String,
-        required: true
+        type: String
     },
    
    state: {
-        type: String,
-        required: true
+        type: String
     },
    
     dob: {
-        type: String,
+        type: String
         
     },
 
   arrestedDate: {
-        type: String,
-        required: true
+        type: String
         
     },
 
     crimeInvloved: {
-        type: String,
-        required: true
+        type: String
         
     },
 
     image: {
-        type:String,
+        // data: Buffer, // Store binary image data
+        // contentType: String // Store content type (e.g., image/jpeg, image/png)
+        type: String
     },
 
 
     age: {
-        type: Number,
-        required: true
+        type: Number
     }, 
     gender: {
-        type: String,
+        type: String
     }
 }, {
-    timestamps: true 
+    timestamps: true
 });
 
-const CriminalRecord = model("CriminalRecord", CriminalRecordSchema);
+const FaceRecognitionData = model("FaceRecognitionData", FaceRecognitionDataSchema);
 
-export default CriminalRecord;
+export default FaceRecognitionData;
+
+
+
