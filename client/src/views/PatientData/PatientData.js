@@ -86,7 +86,8 @@ import * as faceapi from 'face-api.js';
 import axios from 'axios';
 import showToast from 'crunchy-toast';
 import { MdDelete } from 'react-icons/md';
-
+import "./PatientData.css"
+import Header from '../../component/Header/Header';
 function CriminalData() {
   const [data, setData] = useState([]);
   const videoRef = useRef(null);
@@ -151,7 +152,7 @@ function CriminalData() {
             .withFaceDescriptors();
     
           const resizedDetections = faceapi.resizeResults(detections, displaySize);
-          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+          // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     
           resizedDetections.forEach(detection => {
             const bestMatch = faceMatcher.findBestMatch(detection.descriptor);
@@ -161,9 +162,13 @@ function CriminalData() {
     
             // Check if the face matches any criminal
             if (bestMatch.label !== 'unknown') {
+           
               const matchedCriminal = data.find(criminal => criminal.Name === bestMatch.label);
               if (matchedCriminal) {
                 showToast(`Matched with criminal: ${matchedCriminal.Name}`, 'success', 3000);
+              
+                  // loadData(matchedCriminal);
+              
               }
             }
           });
@@ -198,6 +203,7 @@ function CriminalData() {
 
     loadModelsAndStartWebcam();
     recognizeFaces();
+
   }, [data]);
 
 
@@ -216,27 +222,33 @@ function CriminalData() {
 
   return (
     <div className="container">
-      <video ref={videoRef} id="video" width="600" className="current-image" height="450" autoPlay></video>
+     <div>
+     <video ref={videoRef} id="video" width="300" className="current-image" height="250" autoPlay></video>
       <div className="canvas" ref={canvasRef}></div>
-
-      <h2 className='text-blue-700 text-center text-4xl my-2'>All Patients Data</h2>
-      <div className='data-container'>
+     </div>
+     <br />
+      <div><h2 className='text-blue-700 text-center text-4xl my-2'>All Patients Data</h2></div>
+      <div><Header/></div>
+      <div className=''>
         {
           data?.map((obj, index) => {
             const { Name, _id, image, patientId, age, gender, address, state } = obj;
 
             return (
-              <div className='data-card space-y-2' key={_id}>
-                <img src={image} className="w-[100%] mx-auto mb-2" alt={Name} Patient />
-                <p> <b>Name : </b> {Name} </p>
-                <p> <b>Patient Id : </b>{patientId}</p>
-                <p> <b>gender : </b> {gender}</p>
-                <p> <b>Age : </b> {age}</p>
-                <p> <b>Address : </b> {address}</p>
-                <p> <b>State : </b> {state}</p>
+              <div>
+              <div className='d-flex justify-content-evenly' key={_id}>
+                <div className="data">{patientId} </div>
+                <img src={image} className="ings" alt={Name} Patient />
+                <div className="data">{Name} </div>
+                <div className="data">{gender}</div>
+                <div className="data">{age}</div>
+                <div className="data">{address}</div>
+                <div className="data">{state}</div>
               
 
-                <MdDelete className="text-blue-500 text-[30px] ms-auto " onClick={() => del(_id)} />
+                <MdDelete className="data" onClick={() => del(_id)} />
+
+              </div><hr/>
               </div>
             );
           })
