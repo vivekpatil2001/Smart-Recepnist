@@ -54,7 +54,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/faceDetection',
+    path: '/facedetect',
     element: <FaceDetection/>
   },
 ])

@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CriminalForm.css';
-import { MdDelete } from "react-icons/md";
+import { MdDelete } from "react-icons/md";  
 import showToast from "crunchy-toast";
 import { FaEdit } from "react-icons/fa";
 import axios from 'axios';
 import Navbar from '../../component/Navbar/Navbar';
 // import Footer from '../../component/Footer/Footer';
 import { Link } from 'react-router-dom';
+import Webcam from 'react-webcam'; 
 
 const CriminalForm = () => {
   const [Name, setName] = useState("");
@@ -22,6 +23,21 @@ const CriminalForm = () => {
   const [data, setData] = useState([]);
 
 
+
+
+
+  const webcamRef = useRef(null); // Reference to the webcam component
+
+  const capture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImage(imageSrc);
+  };  
+
+
+
+
+
+
   const loadData = async () => {
     const response = await axios.get('/criminalRecords');
 
@@ -34,48 +50,49 @@ const CriminalForm = () => {
 
 
   const saveCriminalData = async () => {
-
-
-    const response = await axios.post("/criminalRecord", {
-      criminalID,
-      address,
-      Name,
-      state,
-      image,
-      crimeInvloved,
-      dob,
-      arrestedDate,
-      age,
-      gender
-
+    // Use the captured image data in your Axios request
+    try{
+      const response = await axios.post("/criminalRecords", {
+        criminalID,
+        address,
+        Name,
+        state,
+        image, // Use the captured image data here
+        crimeInvloved,
+        dob,
+        arrestedDate,
+        age,
+        gender
+      });
+  
+      if (response?.data?.success) {
+        // alert(response?.data?.message)
+        showToast(response?.data?.message, "success", 4000);
+        // window.location.href = "/login";
+      } else {
+        showToast(response?.data?.message, "warning", 4000);
+      }
+  
+      loadData();
+  
+      setName("");
+      setCrimeInvloved("");
+      setCriminalID("")
+      setDob("");
+      setAge("");
+      setGender("");
+      setImage("");
+      setAddress("");
+      setState("");
+  
+    } catch(err){
+      console.log(err.message)
     }
-    );
-
-    if (response?.data?.success) {
-      // alert(response?.data?.message)
-      showToast(response?.data?.message, "success", 4000);
-      // window.location.href = "/login";
-    } else {
-      showToast(response?.data?.message, "warning", 4000);
-    }
-
-    loadData();
-
-    setName("");
-    setCrimeInvloved("");
-    setCriminalID("")
-    setDob("");
-    setAge("");
-    setGender("");
-    setImage("");
-    setAddress("");
-    setState("")
-  };
-
+  }
 
   const del = async (_id) => {
     const response = await axios.delete(
-      `criminalRecord/${_id}`
+      `/criminalRecord/${_id}`
     );
     if (response?.data?.message) {
       showToast(response?.data?.message, "warning", 4000);
@@ -137,7 +154,7 @@ const CriminalForm = () => {
 
               <div className="form-group">
                 <label className='font-semibold text-lg'>Criminal ID:</label>
-                <input type="number"
+                <input type="text"
                   className='input-box'
                   placeholder='Enter your criminal id'
                   id="criminalId"
@@ -201,7 +218,7 @@ const CriminalForm = () => {
 
               <div className="gender-container">
                 <label className='font-semibold text-lg mt-4'>Gender:</label>
-                Male <input
+               <input
                   type="radio"
                   id='male'
                   name='gender'
@@ -210,9 +227,9 @@ const CriminalForm = () => {
                   onChange={() => {
                     setGender("male");
                   }}
-                />
+                /> Male 
 
-                Female  <input
+                 <input
                   type="radio"
                   id='female'
                   name='gender'
@@ -221,7 +238,7 @@ const CriminalForm = () => {
                   onChange={() => {
                     setGender("female");
                   }}
-                />
+                />Female 
 
               </div>
 
@@ -278,17 +295,17 @@ const CriminalForm = () => {
             <input type="text" name="imagePath" className='input-box'/>
           </div> */}
 
-              <div className="form-group">
-                <label className='font-semibold text-lg'>Image URL:</label>
-                <input type="text"
-                  className='input-box'
-                  id="image"
-                  value={image}
-                  onChange={(e) => {
-                    setImage(e.target.value)
-                  }} />
-              </div>
+               <div className="form-group">
+               <label className='font-semibold text-lg'>Capture Image:</label>
+              <Webcam
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                className='webcam-preview'
+              />
+               <button onClick={capture} className="bg-pink-600 hover:bg-pink-800 text-white font-bold mt-2 py-2 px-5 block rounded-lg" type='button'>Capture</button>
             </div>
+          </div>
 
           </div>
           <button type="button" onClick={saveCriminalData} className="bg-pink-600 hover:bg-pink-800 text-white font-bold mt-5 py-2 px-5 block mx-auto rounded-lg" >Submit</button>
@@ -308,4 +325,6 @@ const CriminalForm = () => {
 };
 
 export default CriminalForm;
+
+
 
