@@ -152,7 +152,7 @@ function CriminalData() {
             .withFaceDescriptors();
     
           const resizedDetections = faceapi.resizeResults(detections, displaySize);
-          // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     
           resizedDetections.forEach(detection => {
             const bestMatch = faceMatcher.findBestMatch(detection.descriptor);
