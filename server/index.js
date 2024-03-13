@@ -341,7 +341,7 @@ app.get('/missingPersons', async (req, res) => {
 
 // delete missing person 
 
-app.delete('/missingperson/:_id', async (req, res) => {
+app.delete('/missingPersons/:_id', async (req, res) => {
     const { _id } = req.params;
     try {
         await MissingPersonRecord.deleteOne({ _id: _id });
@@ -465,6 +465,19 @@ const transporter = nodemailer.createTransport({
   });
 
   }
+
+  app.get('/patient/search', async (req, res) => {
+    const { q } = req.query;
+
+    const patient = await MissingPersonRecord.find({ Name: { $regex: q, $options: "i" } })
+
+    res.json({
+        success: true,
+        data:patient,
+        message: 'patient searched'
+    })
+});
+
 
   
 

@@ -10,6 +10,10 @@ const missingPersonSchema = new Schema({
         type: String,
         required: true
     },
+    patientId:{
+        type:String,
+        
+    },
 
     state: {
         type: String,

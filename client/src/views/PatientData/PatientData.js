@@ -83,14 +83,28 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import * as faceapi from 'face-api.js';
+import "./PatientData.css"
 import axios from 'axios';
 import showToast from 'crunchy-toast';
 import { MdDelete } from 'react-icons/md';
 
+
 function CriminalData() {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+
+  async function searchData(){
+    const searchData = await axios.get(`/patient/search?q=${search}`)
+
+    setData(searchData?.data?.data)
+    console.log(setData);
+  }
+
+  useEffect(()=>{
+    searchData()
+  },[search])
   
   const loadData = async () => {
         const response = await axios.get('/missingPersons');
@@ -163,7 +177,7 @@ function CriminalData() {
             if (bestMatch.label !== 'unknown') {
               const matchedCriminal = data.find(criminal => criminal.Name === bestMatch.label);
               if (matchedCriminal) {
-                showToast(`Matched with criminal: ${matchedCriminal.Name}`, 'success', 3000);
+                showToast(`Matched with patient: ${matchedCriminal.Name}`, 'success', 3000);
               }
             }
           });
@@ -204,7 +218,7 @@ function CriminalData() {
 
   const del = async (_id) => {
     try {
-      const response = await axios.delete(`/criminalRecord/${_id}`);
+      const response = await axios.delete(`/missingPersons/${_id}`);
       if (response?.data?.message) {
         showToast(response?.data?.message, 'warning', 4000);
         loadData();
@@ -215,18 +229,38 @@ function CriminalData() {
   };
 
   return (
+    <>
+    <h2 className='text-blue-700 text-center text-4xl my-2'>All Patients Data</h2>
+    <div
+     className='text-blue-700 text-center text-4xl my-2'>
+      <input type='text' 
+      placeholder='Search patient'
+      className='search-bar'
+      value={search}
+      onChange={(e)=>{
+        setSearch(e.target.value)
+      }}
+      />
+      </div>
     <div className="container">
-      <video ref={videoRef} id="video" width="600" className="current-image" height="450" autoPlay></video>
-      <div className="canvas" ref={canvasRef}></div>
 
-      <h2 className='text-blue-700 text-center text-4xl my-2'>All Patients Data</h2>
+      
+    <video ref={videoRef} id="video" width="600" className="current-image" height="450" autoPlay></video>
+      <div className="canvas" ref={canvasRef}></div>
+      
+    
+
+
+      
+      
+   
       <div className='data-container'>
         {
           data?.map((obj, index) => {
             const { Name, _id, image, patientId, age, gender, address, state } = obj;
 
             return (
-              <div className='data-card space-y-2' key={_id}>
+              <div className='data-card space-y-2' key={index}>
                 <img src={image} className="w-[100%] mx-auto mb-2" alt={Name} Patient />
                 <p> <b>Name : </b> {Name} </p>
                 <p> <b>Patient Id : </b>{patientId}</p>
@@ -243,6 +277,7 @@ function CriminalData() {
         }
       </div>
     </div>
+    </>
   );
 }
 
