@@ -41,7 +41,7 @@ function PatientData() {
 
           return (
             <div className="data-card space-y-2 ">
-              <img src={image} className="w-[100%] mx-auto mb-2" />
+ <img src={image} className="w-[100%] mx-auto mb-2" alt="Criminal" />
               <p>
                 {" "}
                 <b>Name : </b> {Name}{" "}
