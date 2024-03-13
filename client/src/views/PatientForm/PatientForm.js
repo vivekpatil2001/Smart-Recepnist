@@ -7,19 +7,18 @@ import Navbar from "../../component/Navbar/Navbar";
 import { MdDelete } from "react-icons/md";
 import showToast from "crunchy-toast";
 import { Link } from "react-router-dom";
-
+ 
 const PatientForm = () => {
+  const [face, setFace] = useState("");
   const [Name, setName] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [weight, setWeight] = useState("");
+  const [contact, setContact] = useState("")
   const [dob, setDob] = useState("");
   const [age, setAge] = useState("");
-  // const [arrestedDate, setArrestedDate] = useState("");
   const [gender, setGender] = useState("");
   const [image, setImage] = useState("");
-  // const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [state, setState] = useState("");
-  // const [criminalId, setCriminalId] = useState("");
   const [data, setData] = useState([]);
 
   const PatientData = async () => {

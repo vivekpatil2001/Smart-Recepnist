@@ -33,7 +33,7 @@ function Home() {
           </p>
           <br />
           <div className=" ">
-            <Link to="/login">
+            <Link to="/patientform">
               {" "}
               <button className="bg-pink-600 cursor-pointer hover:bg-pink-800 text-white font-bold py-2 px-4 rounded-lg">
                 <div className="flex justify-center items-center gap-x-2 font-bold">
@@ -71,7 +71,7 @@ function Home() {
                     href="/missingPersonData"
                     className="no-underline text-black"
                   >
-                    Patient's Info{" "}
+                   <Link to="/patientdata" className="text"> Patient's Info{" "}</Link>
                   </a>
                 </p>
               </div>

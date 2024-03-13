@@ -31,11 +31,16 @@ function Navbar() {
         <div className="navbar-links-container">
           {/* <Link to="/criminalform" className="navbar-link"> Criminal Data </Link> */}
 
-          <Link to="/patientform" className="navbar-link ">
+
+          <Link to="/" className="navbar-link ">
             {" "}
-            Patient Info{" "}
+           Home
           </Link>
 
+          <Link to="/patientform" className="navbar-link ">
+            {" "}
+           Add Patient 
+          </Link>
           {/* <Link to='/signup'  className="navbar-link"> Signup </Link> */}
 
           {user?.name ? (
