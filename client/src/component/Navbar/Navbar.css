@@ -1,3 +1,7 @@
+body{
+  width: 100% ;
+}
+
 .navbar {
   background-color: rgb(244, 229, 232);
   /* color: white !important;

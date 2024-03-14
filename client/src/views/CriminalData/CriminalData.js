@@ -318,10 +318,10 @@ function CriminalData() {
             const { Name, _id, image, criminalID, age, arrestedDate, crimeInvloved, gender, address, state } = obj;
 
             return (
-              <div className='data-card space-y-2' key={_id}>
+              <div className='data-card space-y-2' key={index}>
                 <img src={image} className="w-[100%] mx-auto mb-2" alt="Criminal" />
                 <p> <b>Name : </b> {Name} </p>
-                <p> <b>Criminal Id : </b>{criminalID}</p>
+                <p> <b>patient Id : </b>{criminalID}</p>
                 <p> <b>gender : </b> {gender}</p>
                 <p> <b>Age : </b> {age}</p>
                 <p> <b>Address : </b> {address}</p>

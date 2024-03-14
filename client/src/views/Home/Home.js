@@ -91,20 +91,20 @@ function Home() {
                 <FaFaceGrinWide className="text-pink-500 border-2 p-[4px]  shadow-md border-pink-500 text-[45px] rounded block mx-auto absolute top-4 left-9" />
                 <p className="absolute bottom-4 text-[22px] font-bold pl-5 left-20">
                   {" "}
-                  <Link to="/facedetect">Face Recongnition</Link>
+                  <Link to="/patientData" className="text">Face Recongnition</Link>
                 </p>
               </div>
             </div>
 
-            <div className="second-box">
-              <div className="card w-90 py-11 bg-slate-50 border-2 hover:border-pink-500 duration-400 rounded-lg box shadow-md relative">
-                <MdSettingsVoice className="text-pink-500 border-2 p-[4px]  shadow-md border-pink-500 text-[45px] rounded block mx-auto absolute top-4 left-9" />
-                <p className="absolute bottom-4 text-[22px] font-bold left-20 pl-5">
-                  {" "}
-                  Voice interaction
-                </p>
-              </div>
-            </div>
+              {/* <div className="second-box">
+                <div className="card w-90 py-11 bg-slate-50 border-2 hover:border-pink-500 duration-400 rounded-lg box shadow-md relative">
+                  <MdSettingsVoice className="text-pink-500 border-2 p-[4px]  shadow-md border-pink-500 text-[45px] rounded block mx-auto absolute top-4 left-9" />
+                  <p className="absolute bottom-4 text-[22px] font-bold left-20 pl-5">
+                    {" "}
+                    Voice interaction
+                  </p>
+                </div>
+              </div> */}
 
             <div className="second-box">
               <div className="card w-90 py-11 bg-slate-50 border-2 hover:border-pink-500 duration-400 rounded-lg box  shadow-md relative">
