@@ -284,6 +284,7 @@ app.put('/criminalRecord/:_id', async (req, res) => {
 
 app.post("/missingPerson", async (req, res) => {
     const {
+    patientId,
       address,
       Name,
       state,
@@ -294,6 +295,7 @@ app.post("/missingPerson", async (req, res) => {
     } = req.body;
   
     const missingPersonRecord = new MissingPersonRecord({
+    patientId,
       address,
       Name,
       state,

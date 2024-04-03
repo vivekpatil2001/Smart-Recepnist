@@ -91,7 +91,7 @@ function Home() {
                 <FaFaceGrinWide className="text-pink-500 border-2 p-[4px]  shadow-md border-pink-500 text-[45px] rounded block mx-auto absolute top-4 left-9" />
                 <p className="absolute bottom-4 text-[22px] font-bold pl-5 left-20">
                   {" "}
-                  <Link to="/patientform" className="text">Face Recongnition</Link>
+                  <Link to="/facedetect" className="text">Face Recongnition</Link>
                 </p>
               </div>
             </div>
@@ -103,7 +103,7 @@ function Home() {
                     {" "}
                     Voice interaction
                   </p>
-                </div>
+                </div>  
               </div> */}
 
             <div className="second-box">
