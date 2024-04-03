@@ -52,7 +52,7 @@ const CriminalForm = () => {
   const saveCriminalData = async () => {
     // Use the captured image data in your Axios request
     try{
-      const response = await axios.post("/criminalRecords", {
+      const response = await axios.post("http://localhost:8080/insert", {
         criminalID,
         address,
         Name,

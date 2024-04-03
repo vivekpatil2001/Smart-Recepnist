@@ -1,10 +1,8 @@
 import { Schema, model } from "mongoose";
 
 const FaceRecognitionDataSchema = new Schema({
-    criminalID: {
+    patientId: {
         type: String,
-        required: true,
-        unique: true
     },
 
      address: {

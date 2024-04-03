@@ -1,86 +1,3 @@
-// import React from "react";
-// import "./PatientData.css"
-// import { MdDelete } from "react-icons/md";
-// import showToast from "crunchy-toast";
-// import { FaEdit } from "react-icons/fa";
-// import axios from "axios";
-// import { useState, useEffect } from "react";
-// import Navbar from "../../component/Navbar/Navbar";
-
-// function PatientData() {
-//   const [data, setData] = useState([]);
-//   console.log(data);
-//   const loadData = async () => {
-//     const response = await axios.get("/missingPersons");
-
-//     setData(response?.data?.data);
-//   };
-
-//   useEffect(() => {
-//     loadData();
-//   }, []);
-
-//   const del = async (_id) => {
-//     const response = await axios.delete(`missingperson/${_id}`);
-//     if (response?.data?.message) {
-//       showToast(response?.data?.message, "warning", 4000);
-//       loadData();
-//     }
-//   };
-
-//   return (
-//     <>
-//       <Navbar />
-//       <h2 className="text-blue-700 text-center text-4xl my-3">
-//         All Patient's Data
-//       </h2>
-
-//       <div className="data-container">
-//         {data?.map((obj, index) => {
-//           const { Name, image, _id, dob, age, gender, address, state } = obj;
-
-//           return (
-//             <div className="data-card space-y-2 ">
-//  <img src={image} className="w-[100%] mx-auto mb-2" alt="Criminal" />
-//               <p>
-//                 {" "}
-//                 <b>Name : </b> {Name}{" "}
-//               </p>
-//               <p>
-//                 {" "}
-//                 <b>Gender : </b> {gender}
-//               </p>
-//               {/* <p> <b>DOB : </b> {dob}</p> */}
-//               <p>
-//                 {" "}
-//                 <b>Age : </b> {age}
-//               </p>
-//               <p>
-//                 <b> State : </b> {state}{" "}
-//               </p>
-//               <p>
-//                 {" "}
-//                 <b>Address : </b> {address}
-//               </p>
-//               <MdDelete
-//                 className="text-blue-500 text-[28px] ms-auto "
-//                 onClick={() => del(_id)}
-//               />
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default PatientData;
-
-
-
-
-
-
 import React, { useEffect, useRef, useState } from 'react';
 import * as faceapi from 'face-api.js';
 import axios from 'axios';
@@ -88,6 +5,7 @@ import showToast from 'crunchy-toast';
 import { MdDelete } from 'react-icons/md';
 import "./PatientData.css"
 import Header from '../../component/Header/Header';
+
 function CriminalData() {
   const [data, setData] = useState([]);
   const videoRef = useRef(null);
@@ -152,7 +70,7 @@ function CriminalData() {
             .withFaceDescriptors();
     
           const resizedDetections = faceapi.resizeResults(detections, displaySize);
-          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+          // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     
           resizedDetections.forEach(detection => {
             const bestMatch = faceMatcher.findBestMatch(detection.descriptor);
@@ -229,14 +147,14 @@ function CriminalData() {
      <br />
       <div><h2 className='text-blue-700 text-center text-4xl my-2'>All Patients Data</h2></div>
       <div><Header/></div>
-      <div className=''>
+      <div className='row1'>
         {
           data?.map((obj, index) => {
             const { Name, _id, image, patientId, age, gender, address, state } = obj;
 
             return (
               <div>
-              <div className='d-flex justify-content-evenly' key={_id}>
+               <div className='d-flex justify-content-evenly' key={_id}>
                 <div className="data">{patientId} </div>
                 <img src={image} className="ings" alt={Name} Patient />
                 <div className="data">{Name} </div>
@@ -244,12 +162,9 @@ function CriminalData() {
                 <div className="data">{age}</div>
                 <div className="data">{address}</div>
                 <div className="data">{state}</div>
-              
 
                 <MdDelete className="data" onClick={() => del(_id)} />
-
-              </div><hr/>
-              </div>
+              </div></div>
             );
           })
         }

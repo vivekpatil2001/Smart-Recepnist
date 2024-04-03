@@ -1,3 +1,26 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+
+    justify-content: center;
+    padding: 10px;
+    width: 400px;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-shadow: 2px 2px 3px 2px;
+}
+
+.ings {
+    height: 80px;
+    width: 100px;
+    /* border-radius: 50%; */
+}
+
 .div {
     padding: 0;
     margin: 0;
@@ -5,7 +28,7 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    
+text-align: center;
     justify-content: center;
 }
 
@@ -14,26 +37,10 @@
     top: 0.3%;
     left: 28%;
 
-    
-  }
-  
-  .date{
- 
-    
+
+}
+
+.date {
     display: flex;
     justify-content: space-evenly;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-}
-
- .ings{
-    height: 120px;
-    width: 150px;
-    border-radius: 50%;
- }
-
- .row{
-
- }

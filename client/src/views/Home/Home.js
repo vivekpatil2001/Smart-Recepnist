@@ -19,11 +19,11 @@ import FaceDetection from "../FaceDetection/FaceDetection";
 function Home() {
   return (
     <div>
-      {/* <div><FaceDetection /></div> */}
+ {/* <div><CriminalData /></div> */}
       <div>
         <Navbar />
       </div>
-
+      
       <div class="container flex justify-between">
         <div class="md:w-1/2 p-4 ">
           <h1 class="text-4xl font-bold mb-3">
@@ -120,7 +120,7 @@ function Home() {
       </div>
       <div>
         <div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     </div>
